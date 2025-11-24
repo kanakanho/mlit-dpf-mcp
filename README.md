@@ -9,6 +9,7 @@
   - [4. インストールとセットアップ](#4-インストールとセットアップ)
     - [前提条件](#前提条件)
     - [手順](#手順)
+    - [VSCode でのセットアップ](#vscode-でのセットアップ)
   - [5. ディレクトリ構成](#5-ディレクトリ構成)
   - [6. ライセンス](#6-ライセンス)
   - [7. 注意事項](#7-注意事項)
@@ -46,7 +47,7 @@
 ## 3. 動作環境
 
 * OS：Windows 10 / 11 または macOS 13以降
-* MCPホスト：Claude Desktopなど
+* MCPホスト：Claude Desktop、VSCode（Cline、Continue など）
 * MCPサーバー実行環境：Python 3.10+
 * メモリ：8GB以上推奨
 * ストレージ：空き容量 1GB以上（キャッシュやログを含む）
@@ -54,7 +55,13 @@
 ## 4. インストールとセットアップ
 
 ### 前提条件
-Claude DesktopなどのMCP対応AIアプリケーション および Python がインストールされていることを前提としています。以下は、Claude Desktopでの利用を想定した手順です。
+Claude Desktop または VSCode などの MCP 対応 AI アプリケーションおよび Python がインストールされていることを前提としています。
+
+**セットアップ方法：**
+- **Claude Desktop**: 以下の手順を参照
+- **VSCode**: [VSCode セットアップガイド](./docs/vscode-setup.md) を参照
+
+以下は、Claude Desktopでの利用を想定した手順です。
 
 ### 手順
 
@@ -81,26 +88,27 @@ Claude DesktopなどのMCP対応AIアプリケーション および Python が�
 
    ```bash
    pip install -e .
-   pip install aiohttp pydantic tenacity python-json-logger mcp python-dotenv
    ```
+   
+   > **注意**: このコマンドは `pyproject.toml` に記載された全ての依存パッケージを自動的にインストールします。
 
 5. **環境変数を設定**
 
    `.env.example`をコピーし、 `.env` ファイルを作成します：
 
    ```
-   MLIT_API_KEY=your_api_key_here
+   MLIT_API_KEY=<YOUR_API_KEY_HERE>
    MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
    ```
 
    あるいはコマンドラインから直接設定することも可能です：
 
    ```bash
-   export MLIT_API_KEY=your_api_key_here
+   export MLIT_API_KEY=<YOUR_API_KEY_HERE>
    export MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
    ```
 
-   `your_api_key_here`は必ず、手順1で取得したAPIキーに置き換えてください。
+   `<YOUR_API_KEY_HERE>`は必ず、手順1で取得したAPIキーに置き換えてください。
 
 6. **MCP サーバーの起動**
 
@@ -125,7 +133,7 @@ Claude DesktopなどのMCP対応AIアプリケーション および Python が�
            "....../mlit-dpf-mcp/src/server.py"
          ],
          "env": {
-           "MLIT_API_KEY": "your_api_key_here",
+           "MLIT_API_KEY": "<YOUR_API_KEY_HERE>",
            "MLIT_BASE_URL": "https://www.mlit-data.jp/api/v1/",
            "PYTHONUNBUFFERED": "1",
            "LOG_LEVEL": "WARNING"
@@ -136,21 +144,36 @@ Claude DesktopなどのMCP対応AIアプリケーション および Python が�
    ```
 
    `command`と`args`は必ず、実際のパスに変更してください。  
-   `your_api_key_here`は必ず、手順1で取得したAPIキーに置き換えてください。
+   `<YOUR_API_KEY_HERE>`は必ず、手順1で取得したAPIキーに置き換えてください。
 
 9. **Claude Desktop を再起動**
+
+### VSCode でのセットアップ
+
+VSCode で本MCPサーバーを使用する場合は、[VSCode セットアップガイド](./docs/vscode-setup.md) を参照してください。
+
+**主な対応拡張機能：**
+- Cline（旧 Claude Dev）
+- Continue
+
+詳細な設定手順やトラブルシューティングについては、上記ドキュメントをご確認ください。
 
 
 ## 5. ディレクトリ構成
 
 ```
 mlit-dpf-mcp/
+├─ .vscode/
+│  └─ mcp-settings.json  # VSCode用MCP設定ファイル
+├─ docs/
+│  └─ vscode-setup.md    # VSCodeセットアップガイド
 ├─ src/
 │  ├─ server.py   # MCP サーバー & ツール定義
 │  ├─ client.py   # MLIT GraphQL API クライアント
 │  ├─ schemas.py  # Pydantic モデル（入力バリデーション）
 │  ├─ config.py   # 環境変数ロード & 設定検証
 │  └─ utils.py    # ロギング、タイマー、レート制限
+├─ .env.example
 ├─ pyproject.toml
 ├─ README.md
 └─ LICENSE
