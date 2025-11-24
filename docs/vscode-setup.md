@@ -79,11 +79,11 @@ cp .env.example .env
 `.env` ファイルを編集して、APIキーを設定します：
 
 ```
-MLIT_API_KEY=your_api_key_here
+MLIT_API_KEY=<YOUR_API_KEY_HERE>
 MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
 ```
 
-> **重要**: `your_api_key_here` を実際の API キーに置き換えてください。
+> **重要**: `<YOUR_API_KEY_HERE>` を実際の API キーに置き換えてください。
 
 ### 5. VSCode 拡張機能の設定
 

@@ -88,26 +88,27 @@ Claude Desktop または VSCode などの MCP 対応 AI アプリケーション
 
    ```bash
    pip install -e .
-   pip install aiohttp pydantic tenacity python-json-logger mcp python-dotenv
    ```
+   
+   > **注意**: このコマンドは `pyproject.toml` に記載された全ての依存パッケージを自動的にインストールします。
 
 5. **環境変数を設定**
 
    `.env.example`をコピーし、 `.env` ファイルを作成します：
 
    ```
-   MLIT_API_KEY=your_api_key_here
+   MLIT_API_KEY=<YOUR_API_KEY_HERE>
    MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
    ```
 
    あるいはコマンドラインから直接設定することも可能です：
 
    ```bash
-   export MLIT_API_KEY=your_api_key_here
+   export MLIT_API_KEY=<YOUR_API_KEY_HERE>
    export MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
    ```
 
-   `your_api_key_here`は必ず、手順1で取得したAPIキーに置き換えてください。
+   `<YOUR_API_KEY_HERE>`は必ず、手順1で取得したAPIキーに置き換えてください。
 
 6. **MCP サーバーの起動**
 
@@ -132,7 +133,7 @@ Claude Desktop または VSCode などの MCP 対応 AI アプリケーション
            "....../mlit-dpf-mcp/src/server.py"
          ],
          "env": {
-           "MLIT_API_KEY": "your_api_key_here",
+           "MLIT_API_KEY": "<YOUR_API_KEY_HERE>",
            "MLIT_BASE_URL": "https://www.mlit-data.jp/api/v1/",
            "PYTHONUNBUFFERED": "1",
            "LOG_LEVEL": "WARNING"
@@ -143,7 +144,7 @@ Claude Desktop または VSCode などの MCP 対応 AI アプリケーション
    ```
 
    `command`と`args`は必ず、実際のパスに変更してください。  
-   `your_api_key_here`は必ず、手順1で取得したAPIキーに置き換えてください。
+   `<YOUR_API_KEY_HERE>`は必ず、手順1で取得したAPIキーに置き換えてください。
 
 9. **Claude Desktop を再起動**
 
