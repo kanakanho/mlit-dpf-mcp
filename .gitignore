@@ -16,6 +16,7 @@ ENV/
 # IDE/editor
 .vscode/*
 !.vscode/mcp-settings.json
+!.vscode/README.md
 .idea/
 
 # OS junk

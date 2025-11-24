@@ -57,7 +57,6 @@ cd mlit-dpf-mcp
 python -m venv .venv
 .venv\Scripts\activate
 pip install -e .
-pip install aiohttp pydantic tenacity python-json-logger mcp python-dotenv
 ```
 
 **macOS/Linux:**
@@ -65,8 +64,9 @@ pip install aiohttp pydantic tenacity python-json-logger mcp python-dotenv
 python -m venv .venv
 source .venv/bin/activate
 pip install -e .
-pip install aiohttp pydantic tenacity python-json-logger mcp python-dotenv
 ```
+
+> **注意**: `pip install -e .` は `pyproject.toml` に記載された全ての依存パッケージを自動的にインストールします。
 
 ### 4. 環境変数の設定
 
@@ -102,7 +102,7 @@ MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
       "command": "python",
       "args": ["-m", "src.server"],
       "env": {
-        "MLIT_API_KEY": "your_api_key_here",
+        "MLIT_API_KEY": "<YOUR_API_KEY_HERE>",
         "MLIT_BASE_URL": "https://www.mlit-data.jp/api/v1/",
         "PYTHONUNBUFFERED": "1",
         "LOG_LEVEL": "WARNING"
@@ -111,6 +111,8 @@ MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
   }
 }
 ```
+
+> **重要**: `<YOUR_API_KEY_HERE>` を実際のAPIキーに置き換えてください。
 
 または、プロジェクトルートの `.vscode/mcp-settings.json` を使用する場合：
 
@@ -134,7 +136,7 @@ MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
       "args": ["-m", "src.server"],
       "cwd": "/path/to/mlit-dpf-mcp",
       "env": {
-        "MLIT_API_KEY": "your_api_key_here",
+        "MLIT_API_KEY": "<YOUR_API_KEY_HERE>",
         "MLIT_BASE_URL": "https://www.mlit-data.jp/api/v1/",
         "PYTHONUNBUFFERED": "1",
         "LOG_LEVEL": "WARNING"
@@ -144,7 +146,9 @@ MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
 }
 ```
 
-> **注意**: `/path/to/mlit-dpf-mcp` を実際のプロジェクトパスに置き換えてください。
+> **重要**: 
+> - `<YOUR_API_KEY_HERE>` を実際のAPIキーに置き換えてください
+> - `/path/to/mlit-dpf-mcp` を実際のプロジェクトパスに置き換えてください
 
 ## 設定ファイルの詳細
 
@@ -226,7 +230,6 @@ MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
 2. 依存関係を再インストール
    ```bash
    pip install -e .
-   pip install aiohttp pydantic tenacity python-json-logger mcp python-dotenv
    ```
 
 ### 問題: ログが表示されない
