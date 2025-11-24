@@ -23,7 +23,7 @@
 
 ## 対応する VSCode 拡張機能
 
-このMCPサーバーは、以下のVSCode拡張機能で使用できます：
+この MCP サーバーは、以下の VSCode 拡張機能で使用できます：
 
 ### 1. Cline (旧 Claude Dev)
 - **拡張機能ID**: `saoudrizwan.claude-dev`
@@ -134,7 +134,7 @@ MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
       "name": "mlit-dpf-mcp",
       "command": "python",
       "args": ["-m", "src.server"],
-      "cwd": "/path/to/mlit-dpf-mcp",
+      "cwd": "/absolute/path/to/mlit-dpf-mcp",
       "env": {
         "MLIT_API_KEY": "<YOUR_API_KEY_HERE>",
         "MLIT_BASE_URL": "https://www.mlit-data.jp/api/v1/",
@@ -148,7 +148,9 @@ MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
 
 > **重要**: 
 > - `<YOUR_API_KEY_HERE>` を実際のAPIキーに置き換えてください
-> - `/path/to/mlit-dpf-mcp` を実際のプロジェクトパスに置き換えてください
+> - `cwd` を実際のプロジェクトの絶対パスに置き換えてください
+>   - **Windows の例**: `C:\\Users\\YourName\\mlit-dpf-mcp`
+>   - **macOS/Linux の例**: `/Users/YourName/mlit-dpf-mcp` または `/home/username/mlit-dpf-mcp`
 
 ## 設定ファイルの詳細
 
@@ -209,7 +211,11 @@ MLIT_BASE_URL=https://www.mlit-data.jp/api/v1/
    ```
 2. 必要なパッケージがインストールされているか確認
    ```bash
+   # macOS/Linux の場合:
    pip list | grep mcp
+   
+   # Windows の場合:
+   pip list | findstr mcp
    ```
 3. 環境変数が正しく設定されているか確認
    ```bash
